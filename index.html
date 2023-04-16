@@ -16,30 +16,50 @@
     <div id="searchAside" class="container mt-3">
         <div class="row">
           <div class="col-md-3">
-            <h2>Search</h2>
+            <h2>Search:</h2>
             <form>
               <div class="input-group mb-3">
                 <input type="text" id="searchInput" class="form-control" placeholder="Enter location">
-                <button type="submit" id="searchButton" class="btn btn-primary">Search</button>
+                <button type="button" id="searchButton" class="btn btn-primary">Search</button>
               </div>
             </form>
             <h2>Recent Searches</h2>
-            <ul id="searchHistory" class="list-group"></ul>
+            <ul id="searchHistory" class="list-group">
+
+            </ul>
           </div>
           <div id="current-info" class="col-md-9">
             <h2>Current Weather</h2>
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title" id="currentCity">1</h5>
-                <p class="card-text" id="currentDate">2</p>
-                <p class="card-text" id="currentTemp">3</p>
-                <p class="card-text" id="currentHumidity">4</p>
-                <p class="card-text" id="currentWind">5</p>
-                <p class="card-text" id="currentUv">6</p>
+                <h5 class="card-title"><span id="currentCity">No Data</span> (<span id="currentDate">No Data</span>)</h5>
+                <p class="card-text" >Temp: <span id="currentTemp"> No Data</span></p>
+                <p class="card-text" >Wind: <span id="currentHumidity">No Data</span></p>
+                <p class="card-text" >Humidity: <span id="currentWind">No Data</span></p>
+                <p class="card-text" >UV Index: <span id="currentUv">No Data</span></p>
               </div>
             </div>
           </div>
         </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="weather-box" id="day1"></div>
+            </div>
+            <div class="col-md-2">
+              <div class="weather-box" id="day2"></div>
+            </div>
+            <div class="col-md-2">
+              <div class="weather-box" id="day3"></div>
+            </div>
+            <div class="col-md-2">
+              <div class="weather-box" id="day4"></div>
+            </div>
+            <div class="col-md-2">
+              <div class="weather-box" id="day5"></div>
+            </div>
+          </div>
+        </div>        
       </div>
     <main>
         <div class="container-fluid">
@@ -51,6 +71,6 @@
 </body>
 
 
-<script src="main.js"></script>
+<script src="main.js" defer></script>
 </html>
 

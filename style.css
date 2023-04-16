@@ -13,3 +13,10 @@
     background-color: white;
 }
 
+.weather-box {
+    padding: 20px;
+    margin-top: 20px;
+    height: 200px;
+    border: 2px solid #0624a7;
+    background-color: rgb(92, 182, 238);
+}
