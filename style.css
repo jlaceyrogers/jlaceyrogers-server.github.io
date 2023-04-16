@@ -13,10 +13,12 @@
     background-color: white;
 }
 
-.weather-box {
-    padding: 20px;
-    margin-top: 20px;
-    height: 200px;
-    border: 2px solid #0624a7;
-    background-color: rgb(92, 182, 238);
+.row {
+ margin-top: 20px;
+}
+
+.card-body {
+    padding: 0.5rem 1.25rem;
+    background-color: #6caded;
+    color: rgb(33, 33, 33);
 }

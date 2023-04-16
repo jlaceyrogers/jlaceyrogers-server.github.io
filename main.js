@@ -44,13 +44,17 @@ async function getWeatherDataCurrent(city){
 
 }
 
-async function getWeatherDataForecast(city){
-  const apiKey = '8730129a02fdec31293217d5a8a9c63a';
-  var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
 
-  var request = await fetch(apiUrl);
-  var data = await request.json();
+function updateCards() {
+  const day1 = document.getElementById('day1');
+  const day2 = document.getElementById('day2');
+  const day3 = document.getElementById('day3');
+  const day4 = document.getElementById('day4');
+  const day5 = document.getElementById('day5');
 
-  return data
-
+  submitBTN.addEventListener("click", function() {
+    var searchedCity = searchInput.value;
+    //console.log(searchedCity)
+    var weatherData = getWeatherDataCurrent(searchedCity);
+  });
 }
