@@ -1,54 +1,56 @@
-const apiKey = '8730129a02fdec31293217d5a8a9c63a';
-//https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-
-//api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
-
-// Retrieve elements from the DOM and create variables
-
-const searchInput = document.getElementById('searchInput');
-const searchHistory = document.getElementById('searchHistory');
-const cityName = document.getElementById('cityName');
-const temperature = document.getElementById('temperature');
-const description = document.getElementById('description');
-const submitBTN = document.getElementById('searchButton')
-
-var getWeatherData;
-
-var lat = ("latitude");
-var lon = ("longitude");
-
-
 window.addEventListener("DOMContentLoaded", function(){
-        
-        submitBTN.addEventListener("click", function(){
-            var searchedCity = searchInput.value
-            //console.log(searchedCity)
-            getWeatherData(searchedCity)
-        })
+  const searchHistory = document.getElementById('searchHistory'); //unsure what this is for
+  const description = document.getElementById('description'); //unsure what this is for
+  
+  //https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+  //api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
+  // Retrieve elements from the DOM and create variables
 
-        cityName.value = getWeatherData.city.name;
+  const searchInput = document.getElementById('searchInput');
+  const submitBTN = document.getElementById('searchButton')
+  const currentCityName = document.getElementById('currentCity');
+  const currentTemperature = document.getElementById('currentTemp');
+  const currentDate = document.getElementById('currentDate');
+  const currentHumidity = document.getElementById('currentHumidity');
+  const currentWind = document.getElementById('currentWind');
+  const weatherImg = document.getElementById('weatherImg');
+      
+      submitBTN.addEventListener("click", function(){
+          var searchedCity = searchInput.value
+          //console.log(searchedCity)
+          var weatherData = getWeatherDataCurrent(searchedCity)
 
+          weatherData.then(data => {
+              console.log(data)
+              currentCityName.innerText = data.name
+              currentTemperature.innerText = `${data.main.temp} °C`
+              currentDate.innerText = Date(data.dt)
+              currentHumidity.innerText = data.main.humidity
+              currentWind.innerText = `${data.wind.speed} Km/s`
+              weatherImg.src = "https://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png"
+          });
+          
+      })
 });
 
-function getWeatherData(city){
-    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+async function getWeatherDataCurrent(city){
+  const apiKey = '8730129a02fdec31293217d5a8a9c63a';
+  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-    fetch(apiUrl)
-      .then(function (response) {
-        if (response.ok) {
-          console.log(response);
-          response.json().then(function (data) {
-            console.log(data);
-            getWeatherData = data;
-            console.log(getWeatherData);
-          });
-        } else {
-          alert('Error: ' + response.statusText);
-        }
-      })
-      .catch(function (error) {
-        alert('Unable to connect to GitHub');
-      });
-        
+  var request = await fetch(apiUrl);
+  var data = await request.json();
+
+  return data
+
 }
 
+async function getWeatherDataForecast(city){
+  const apiKey = '8730129a02fdec31293217d5a8a9c63a';
+  var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+
+  var request = await fetch(apiUrl);
+  var data = await request.json();
+
+  return data
+
+}
